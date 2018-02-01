@@ -5,5 +5,6 @@ defmodule TextClient do
 
   @doc """
   """
-  defdelegate  
+  defdelegate  start(), to: TextClient.Interact
+  
 end

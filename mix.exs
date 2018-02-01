@@ -13,7 +13,7 @@ defmodule TextClient.Mixfile do
 
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :captacion_agua]
     ]
   end
 

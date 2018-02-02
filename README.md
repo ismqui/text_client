@@ -1,6 +1,11 @@
 # TextClient
 
+Command Line Interface that calls captacion_agua code.
+
 **TODO: Add description**
+
+* Add Documentation
+* Refactor code
 
 ## Installation
 
@@ -18,4 +23,3 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/text_client](https://hexdocs.pm/text_client).
-

@@ -5,7 +5,7 @@ defmodule TextClient.Interact do
     |> List.insert_at(-1, "Todas")
     |> display()
     |> prompt()
-    |> TextClient.CaptacionAgua.format()
+    |> TextClient.CaptacionAgua.format_type()
 
     case confirm("Continuar?[Y/n]") do
       true ->
@@ -35,17 +35,17 @@ defmodule TextClient.Interact do
       input == count ->
         options
       true ->
-        get_place(options, input)
+        get_select(options, input)
     end
 
   end
 
-  def get_place(options, input) do
-    [{ place, _}] = options
+  def get_select(options, input) do
+    [{ select, _}] = options
       |> Enum.with_index(1)
       |> Enum.filter(fn {_text, ind} -> ind == input end)
 
-    place
+    select
   end
 
   def confirm(question) do
@@ -58,7 +58,6 @@ defmodule TextClient.Interact do
       _ -> confirm(question)
     end
   end
-
 
   def check_input({:error, reason}) do
     IO.puts "Error: #{reason}"

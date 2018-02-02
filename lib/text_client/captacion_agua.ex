@@ -1,15 +1,29 @@
 defmodule TextClient.CaptacionAgua do
-  
-  def format(place) when is_bitstring(place) do
-    # format_output(place)
+
+  def format_type(place) do
+
+    select = confirm_v("Display vertical or horizontal (v/h). ")
+    format(place, select)
+  end
+
+  def format(place, :vertical) when is_bitstring(place) do
     format_output_v(place)
   end
 
-  def format(places) when is_list(places) do
+  def format(place, :horizontal) when is_bitstring(place) do
+    format_output(place)
+  end
+
+  def format(places, :vertical) when is_list(places) do
     places
     |> Enum.take(Enum.count(places) - 1)
     |> Enum.map(&format_output_v(&1))
-    # |> Enum.map(&format_output(&1))
+  end
+
+  def format(places, :horizontal) when is_list(places) do
+    places
+    |> Enum.take(Enum.count(places) - 1)
+    |> Enum.map(&format_output(&1))
   end
 
   def format_output(place) do
@@ -68,6 +82,17 @@ defmodule TextClient.CaptacionAgua do
 
   def format_line(texto, msg) do
     String.pad_trailing(msg, 14, " ") <> texto
+  end
+
+  def confirm_v(question) do
+    IO.ANSI.clear_line()
+    answer = question |> IO.gets() |> String.trim() |> String.downcase()
+
+    case answer do
+      "v" -> :vertical
+      "h" -> :horizontal
+      _ -> confirm_v(question)
+    end
   end
 
 end
